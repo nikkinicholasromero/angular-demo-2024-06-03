@@ -6,21 +6,49 @@ import { afterRender } from '@angular/core';
 import { AnonymousCard } from './anonymous-card/anonymous-card.component';
 import { AuthenticatedCard } from './authenticated-card/authenticated-card.component';
 import { NgComponentOutlet } from '@angular/common';
+import { GreetPipe } from './pipe/greet.pipe';
+import { ExponentialStrengthPipe } from './pipe/exponential-strength.pipe';
+import { FlyingHeroes } from './flying-heroes/flying-heroes.component';
+import { SvgComponent } from './svg/svg.component';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   template: `
+    @if (2 > 1) {
+      <p>2 > 1</p>
+    } @else {
+      <p>2 <= 1</p>
+    }
+
+    @for (item of items; track item.id) {
+      <p>{{ item.name }}</p>
+    } @empty {
+      <li> There are no items.</li>
+    }
+
+   <p>{{ "Nikki" | greet }}</p>
+   <p>{{ 2 | exponentialStrength : 10 }}</p>
+
     <button type="button" class="btn-primary" (click)="changeChild()" #button>{{parentLabel}}</button>
     <hr>
     <app-login-form [childLabel]='childLabel' (buttonClicked)="changeParent($event)"></app-login-form>
-    <ng-container *ngComponentOutlet="card">
+
+    <ng-container *ngComponentOutlet="card"></ng-container>
+
+    <app-flying-heroes></app-flying-heroes>
+
+    <app-svg></app-svg>
   `,
   imports: [
+    NgComponentOutlet,
     LoginForm,
     AnonymousCard,
     AuthenticatedCard,
-    NgComponentOutlet
+    FlyingHeroes,
+    SvgComponent,
+    GreetPipe,
+    ExponentialStrengthPipe
   ],
   providers: [
     NgComponentOutlet
@@ -37,6 +65,20 @@ export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit, 
   button!: ElementRef;
 
   card!: Type<any> | null;
+
+  items: {id: number, name: string}[] = [{
+    id: 1,
+    name: "Nikki"
+  },{
+    id: 2,
+    name: "Leslie"
+  },{
+    id: 3,
+    name: "Maven"
+  },{
+    id: 4,
+    name: "Megan"
+  }];
 
   constructor() {
     afterNextRender(() => {
