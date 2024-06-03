@@ -10,7 +10,6 @@ import { NgComponentOutlet } from '@angular/common';
 @Component({
   standalone: true,
   selector: 'app-root',
-  styleUrl: 'app.component.css',
   template: `
     <button type="button" class="btn-primary" (click)="changeChild()" #button>{{parentLabel}}</button>
     <hr>

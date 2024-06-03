@@ -7,11 +7,11 @@ import { Card } from "../card/card.component";
   selector: 'app-login-form',
   template: `
     <app-card [title]='"Login"'>
-        <div ngProjectAs="card-header">
-          <h1>Login</h1>
-        </div>
+      <div ngProjectAs="card-header">
+        <h1>Login</h1>
+      </div>
 
-        <button type="button" class="btn-primary" (click)='change()'>{{childLabel}}</button>
+      <button type="button" class="btn-primary" (click)='change()'>{{childLabel}}</button>
     </app-card>
   `,
   imports: [
@@ -20,7 +20,7 @@ import { Card } from "../card/card.component";
 })
 export class LoginForm implements OnInit, OnChanges, DoCheck, AfterViewInit, AfterContentInit, AfterViewChecked, AfterContentChecked, OnDestroy {
   @Input({ required: true })
-  childLabel!: string;
+  childLabel = '';
 
   buttonClicked = output<string>();
 

@@ -5,14 +5,14 @@ import { LoginForm } from "../login-form/login-form.component";
   standalone: true,
   selector: 'app-card',
   template: `
-        <div class="border-2 border-black bg-red-900">
-            <ng-content select="card-header"></ng-content>
-            <hr>
-            {{message}}
-            <hr>
-            <ng-content></ng-content>
-        </div>
-    `
+    <div class="border-2 border-black bg-red-900">
+      <ng-content select="card-header"></ng-content>
+      <hr>
+      {{message}}
+      <hr>
+      <ng-content></ng-content>
+    </div>
+  `
 })
 export class Card implements OnInit, OnChanges, DoCheck, AfterViewInit, AfterContentInit, AfterViewChecked, AfterContentChecked, OnDestroy {
   message: string = "";
