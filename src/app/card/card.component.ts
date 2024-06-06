@@ -1,18 +1,22 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges, afterNextRender, afterRender } from "@angular/core";
 import { LoginForm } from "../login-form/login-form.component";
+import { HighlightDirective } from "../directive/highlight.directive";
 
 @Component({
   standalone: true,
   selector: 'app-card',
   template: `
-    <div class="border-2 border-black bg-red-900">
+    <div class="border-2 border-black" [appHighlight]="'blue'">
       <ng-content select="card-header"></ng-content>
       <hr>
       {{message}}
       <hr>
       <ng-content></ng-content>
     </div>
-  `
+  `,
+  imports: [
+    HighlightDirective
+  ]
 })
 export class Card implements OnInit, OnChanges, DoCheck, AfterViewInit, AfterContentInit, AfterViewChecked, AfterContentChecked, OnDestroy {
   message: string = "";
