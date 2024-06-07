@@ -10,11 +10,16 @@ import { GreetPipe } from './pipe/greet.pipe';
 import { ExponentialStrengthPipe } from './pipe/exponential-strength.pipe';
 import { FlyingHeroes } from './flying-heroes/flying-heroes.component';
 import { SvgComponent } from './svg/svg.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { TemplateFormComponent } from './template-form/template-form.component';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   template: `
+    <app-reactive-form></app-reactive-form>
+    <app-template-form></app-template-form>
+
     @if (2 > 1) {
       <p>2 > 1</p>
     } @else {
@@ -39,6 +44,7 @@ import { SvgComponent } from './svg/svg.component';
     <app-flying-heroes></app-flying-heroes>
 
     <app-svg></app-svg>
+
   `,
   imports: [
     NgComponentOutlet,
@@ -48,7 +54,9 @@ import { SvgComponent } from './svg/svg.component';
     FlyingHeroes,
     SvgComponent,
     GreetPipe,
-    ExponentialStrengthPipe
+    ExponentialStrengthPipe,
+    ReactiveFormComponent,
+    TemplateFormComponent
   ],
   providers: [
     NgComponentOutlet
@@ -58,7 +66,7 @@ export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit, 
   childLabel: string = uuid();
   parentLabel: string = uuid();
 
-  @ViewChild(LoginForm, {static: true})
+  @ViewChild(LoginForm, { static: true })
   loginForm!: LoginForm;
 
   @ViewChild('button')
@@ -66,16 +74,16 @@ export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit, 
 
   card!: Type<any> | null;
 
-  items: {id: number, name: string}[] = [{
+  items: { id: number, name: string }[] = [{
     id: 1,
     name: "Nikki"
-  },{
+  }, {
     id: 2,
     name: "Leslie"
-  },{
+  }, {
     id: 3,
     name: "Maven"
-  },{
+  }, {
     id: 4,
     name: "Megan"
   }];
