@@ -12,11 +12,14 @@ import { FlyingHeroes } from './flying-heroes/flying-heroes.component';
 import { SvgComponent } from './svg/svg.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
+import { ActorFormComponent } from './actor-form/actor-form.component';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   template: `
+    <app-actor-form></app-actor-form>
+
     <app-reactive-form></app-reactive-form>
     <app-template-form></app-template-form>
 
@@ -56,7 +59,8 @@ import { TemplateFormComponent } from './template-form/template-form.component';
     GreetPipe,
     ExponentialStrengthPipe,
     ReactiveFormComponent,
-    TemplateFormComponent
+    TemplateFormComponent,
+    ActorFormComponent
   ],
   providers: [
     NgComponentOutlet
